@@ -19,12 +19,14 @@ void process_creator() {
     int status = 0;
     waitpid(pids[0], &status, 0);
     if (WIFEXITED(status)) {
-        cout << "Child " << pids[0] << " terminated with: " << status << endl;
+        cout << "Child " << pids[0]
+             << " terminated with: " << WEXITSTATUS(status) << endl;
     }
 
     waitpid(pids[1], &status, 0);
     if (WIFEXITED(status)) {
-        cout << "Child " << pids[1] << " terminated with: " << status << endl;
+        cout << "Child " << pids[1]
+             << " terminated with: " << WEXITSTATUS(status) << endl;
     }
 }
 

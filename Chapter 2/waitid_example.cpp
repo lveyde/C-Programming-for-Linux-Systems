@@ -18,12 +18,10 @@ void process_creator() {
 
     siginfo_t status = {0};
     waitid(P_PID, pids[1], &status, WEXITED);
-    if (WIFSIGNALED(status)) {
-        cout << "Child " << pids[1] << " aborted: "
-             << "\nStatus update with SIGCHLD: " << status.si_signo
-             << "\nTermination signal - SIGABRT: " << status.si_status
-             << "\nTermination code - _exit(2): " << status.si_code << endl;
-    }
+    cout << "Child " << pids[1]
+         << " aborted: " << "\nStatus update with SIGCHLD: " << status.si_signo
+         << "\nTermination signal - SIGABRT: " << status.si_status
+         << "\nTermination code - CLD_DUMPED: " << status.si_code << endl;
 }
 
 int main() {
